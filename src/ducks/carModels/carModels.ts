@@ -1,5 +1,5 @@
 import {ICarModel} from "./types";
-import {actionCreator, IActionUnion, IDict} from "../helpers";
+import {actionCreator, IDict} from "../helpers";
 
 export enum ECarModelActions {
     GET = 'getCarModels',
