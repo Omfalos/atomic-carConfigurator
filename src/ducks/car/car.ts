@@ -1,4 +1,4 @@
-import {actionCreator} from "../helpers";
+import {actionCreator, IActionUnion} from "../helpers";
 import {ICarModel} from "../carModels/types";
 import {IEngineModel} from "../engineModels/types";
 import {IGearModel} from "../gearModels/types";
@@ -13,17 +13,17 @@ export enum ECarActions {
 }
 
 export const carActions = {
-    setModel: actionCreator<ECarActions.SET_MODEL, ICarModel>(ECarActions.SET_MODEL),
-    setEngine: actionCreator<ECarActions.SET_ENGINE, IEngineModel>(ECarActions.SET_ENGINE),
-    setGearType: actionCreator<ECarActions.SET_GEAR_TYPE, IGearModel>(ECarActions.SET_GEAR_TYPE),
-    setColor: actionCreator<ECarActions.SET_COLOR, ICarColor>(ECarActions.SET_COLOR),
+    setModel: actionCreator<typeof ECarActions.SET_MODEL, ICarModel | null>(ECarActions.SET_MODEL),
+    setEngine: actionCreator<typeof ECarActions.SET_ENGINE, IEngineModel | null>(ECarActions.SET_ENGINE),
+    setGearType: actionCreator<typeof ECarActions.SET_GEAR_TYPE, IGearModel | null>(ECarActions.SET_GEAR_TYPE),
+    setColor: actionCreator<typeof ECarActions.SET_COLOR, ICarColor | null>(ECarActions.SET_COLOR),
 }
 
 export interface ICarState {
-    model: ICarModel | null,
-    engine: IEngineModel | null,
-    gearType: IGearModel | null,
-    color: ICarColor | null,
+    model: ICarModel | null | undefined,
+    engine: IEngineModel | null | undefined,
+    gearType: IGearModel | null | undefined,
+    color: ICarColor | null | undefined,
 }
 
 const carInitialState:ICarState = {
@@ -33,19 +33,19 @@ const carInitialState:ICarState = {
     color: null,
 }
 
-type IActions = ReturnType<typeof carActions.setModel | typeof carActions.setEngine | typeof carActions.setGearType | typeof carActions.setColor>
+type IActions = IActionUnion<string, ICarModel | IEngineModel | IGearModel | ICarColor | null,  typeof carActions>
 
 export const carReducer: Reducer<ICarState, IActions> = (state = carInitialState, action) => {
     switch (action.type) {
         case ECarActions.SET_MODEL:
             return {
                 ...state,
-                model: action.payload
+                model: action.payload,
             }
         case ECarActions.SET_COLOR:
             return {
                 ...state,
-                color: action.payload
+                color: action.payload,
             }
         case ECarActions.SET_GEAR_TYPE:
             return {
@@ -55,7 +55,7 @@ export const carReducer: Reducer<ICarState, IActions> = (state = carInitialState
         case ECarActions.SET_ENGINE:
             return {
                 ...state,
-                engine: action.payload
+                engine: action.payload,
             }
         default:
             return state

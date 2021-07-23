@@ -1,11 +1,9 @@
 import { SagaIterator } from 'redux-saga'
-import {call} from 'redux-saga/effects'
-
-
-const sayHello = (): void => {
-    console.log('Hello')
-}
+import {fork, all} from 'redux-saga/effects'
+import {carModelFetchSaga} from "../ducks/carModels/carModels";
 
 export function* rootSaga():SagaIterator<void> {
-    yield call(sayHello)
+    yield all([
+        yield fork(carModelFetchSaga)
+    ])
 }

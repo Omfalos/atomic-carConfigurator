@@ -1,5 +1,9 @@
 import {ICarModel} from "./types";
-import {actionCreator, IDict} from "../helpers";
+import {actionCreator, IActionUnion, IDict} from "../helpers";
+import {Reducer} from "react";
+import {getEngines} from "../../api/api";
+import {call, put, StrictEffect} from "redux-saga/effects";
+
 
 export enum ECarModelActions {
     GET = 'getCarModels',
@@ -13,8 +17,9 @@ export const carModelActions = {
 }
 
 const carModelsInitialState:IDict<ICarModel> = {}
-//TODO: ICarActionTyps should be define need to add IActionUnion
-export const carModelReducer = (state = carModelsInitialState, action: {type: ECarModelActions, payload: undefined | IDict<ICarModel> } ): IDict<ICarModel> => {
+type IActions = IActionUnion<string, ICarModel, typeof carModelActions>
+
+export const carModelReducer: Reducer<IDict<ICarModel>, IActions> = (state = carModelsInitialState, action ) => {
     switch (action.type) {
         case ECarModelActions.DELETE:
             return {}
@@ -23,5 +28,11 @@ export const carModelReducer = (state = carModelsInitialState, action: {type: EC
         default:
             return state
     }
+}
 
+export function* carModelFetchSaga():Generator<StrictEffect, void, IDict<ICarModel>> {
+    const data = yield call(getEngines.fetch)
+    if(data) {
+        yield put(carModelActions.setCarModels(data))
+    }
 }
