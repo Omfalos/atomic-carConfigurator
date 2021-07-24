@@ -1,6 +1,7 @@
 import {IGearModel} from "./types";
 import {actionCreator, IDict} from "../helpers";
-
+import { gearApi } from "../../api/api";
+import { StrictEffect, put, call } from "redux-saga/effects";
 export enum EGearModelActions {
     GET = 'getGearModels',
     SET = 'setGearModels',
@@ -24,4 +25,11 @@ export const gearModelReducer = (state = gearModelsInitialState, action: {type: 
             return state
     }
 
+}
+
+export function* gearsFetchSaga(): Generator<StrictEffect, void, IDict<IGearModel>> {
+    const data = yield call(gearApi.fetch)
+    if (data) {
+        yield put(gearModelsActions.setCarModels(data))
+    }
 }

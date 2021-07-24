@@ -1,8 +1,8 @@
 import {ICarModel} from "./types";
 import {actionCreator, IActionUnion, IDict} from "../helpers";
 import {Reducer} from "react";
-import {getEngines} from "../../api/api";
-import {call, put, StrictEffect} from "redux-saga/effects";
+import {carModelApi} from "../../api/api";
+import {call, delay, put, StrictEffect} from "redux-saga/effects";
 
 
 export enum ECarModelActions {
@@ -31,7 +31,9 @@ export const carModelReducer: Reducer<IDict<ICarModel>, IActions> = (state = car
 }
 
 export function* carModelFetchSaga():Generator<StrictEffect, void, IDict<ICarModel>> {
-    const data = yield call(getEngines.fetch)
+    // Added to see transition could be removed
+    yield delay(500)
+    const data = yield call(carModelApi.fetch)
     if(data) {
         yield put(carModelActions.setCarModels(data))
     }

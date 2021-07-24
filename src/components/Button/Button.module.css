@@ -1,0 +1,22 @@
+.base {
+  display: inline-block;
+  height: 2.75rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  background-color: red;
+  color: white;
+  transition: background-color 0.15s, color 0.15s;
+  cursor: pointer;
+}
+
+.base:hover,
+.base_isSelected {
+  background-color: black;
+  color: white;
+}
+
+.base:not(.base:hover).base_isDisabled {
+  background-color: grey;
+  color: black;
+  cursor: not-allowed;
+}
