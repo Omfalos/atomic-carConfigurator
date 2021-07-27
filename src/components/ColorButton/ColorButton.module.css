@@ -1,0 +1,27 @@
+.base {
+    display: inline-block;
+    height: 2.75rem;
+    width: 2.75rem;
+    padding: .5rem;
+    font-size: 1.25rem;
+    outline: 0 solid transparent;
+    color: white;
+    transition: outline .15s, opacity .15s;
+    cursor: pointer;
+}
+
+.base:hover,
+.base_isSelected {
+    outline: rgba(0, 0, 0, 1) solid .125rem;
+}
+
+.base:not(.base_isDisabled):hover {
+    outline: rgba(0, 0, 0, .8) solid .125rem;
+}
+
+.base.base_isDisabled:hover,
+.base.base_isDisabled {
+    outline-color: grey;
+    opacity: .1;
+    cursor: not-allowed;
+}

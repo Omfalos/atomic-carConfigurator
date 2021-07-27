@@ -36,8 +36,15 @@ const mockCars = {
         uid: 'sfdsad',
         displayName: 'Super model',
         availableEngines: ['aaa', 'bbb'],
-        availableColors: ['sasa', 'sssasdsa'],
+        availableColors: ['sasas', 'sssasdsa', 'dadada', 'fooBar'],
         basePrice: 64000,
+    },
+    'sba': {
+        uid: 'sba',
+        displayName: 'base model',
+        availableEngines: ['aaa', 'bbb', 'ccc', 'ddd'],
+        availableColors: ['sasa', 'sssasdsa'],
+        basePrice: 30000,
     }
 }
 
@@ -47,6 +54,30 @@ const mockColors = {
         price: 0,
         displayName: 'white',
         color: '#ffffff',
+    },
+    'sasas': {
+        uid: 'sasas',
+        price: 1000,
+        displayName: 'red',
+        color: '#ff0000',
+    },
+    'sssasdsa': {
+        uid: 'sssasdsa',
+        price: 2000,
+        displayName: 'green',
+        color: '#00ff00',
+    },
+    'dadada': {
+        uid: 'dadada',
+        price: 4000,
+        displayName: 'deep purple',
+        color: '#230b44',
+    },
+    'fooBar': {
+        uid: 'fooBar',
+        price: 10000,
+        displayName: 'dark orange',
+        color: '#904b19',
     }
 }
 
@@ -55,6 +86,11 @@ const mockGears = {
         uid: 'automaticSuper',
         displayName: 'Super Automatic',
         price: 1500,
+    },
+    'manualStandard': {
+        uid: 'manualStandard',
+        displayName: 'Manual Base',
+        price: 0,
     }
 }
 
@@ -64,7 +100,50 @@ const mockEngine = {
         displayName: 'super cool ultra engine',
         availableGearTypes: ['automaticSuper'],
         basePrice: 15000,
+    },
+    'bbb': {
+        uid: 'bbb',
+        displayName: 'cool ultra engine',
+        availableGearTypes: ['automaticSuper'],
+        basePrice: 10000,
+    },
+    'ccc': {
+        uid: 'ccc',
+        displayName: 'cool engine',
+        availableGearTypes: ['automaticSuper', 'manualStandard' ],
+        basePrice: 5000,
+    },
+    'ddd': {
+        uid: 'ddd',
+        displayName: 'engine',
+        availableGearTypes: ['manualStandard'],
+        basePrice: 0,
+    },
+    'eee': {
+        uid: 'eee',
+        displayName: 'super cool ultra engine',
+        availableGearTypes: ['automaticSuper'],
+        basePrice: 15000,
+    },
+    'fff': {
+        uid: 'fff',
+        displayName: 'cool ultra engine',
+        availableGearTypes: ['automaticSuper'],
+        basePrice: 10000,
+    },
+    'ggg': {
+        uid: 'ggg',
+        displayName: 'cool engine',
+        availableGearTypes: ['automaticSuper', 'manualStandard' ],
+        basePrice: 5000,
+    },
+    'hhh': {
+        uid: 'hhh',
+        displayName: 'engine',
+        availableGearTypes: ['manualStandard'],
+        basePrice: 0,
     }
+
 }
 
 export const carModelApi = new Api<IDict<ICarModel>>(() => Promise.resolve(mockCars), '')

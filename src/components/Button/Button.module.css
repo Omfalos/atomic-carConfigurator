@@ -1,7 +1,7 @@
 .base {
   display: inline-block;
   height: 2.75rem;
-  padding: 0.5rem;
+  padding: .5rem;
   font-size: 1.25rem;
   background-color: red;
   color: white;
@@ -15,8 +15,13 @@
   color: white;
 }
 
-.base:not(.base:hover).base_isDisabled {
-  background-color: grey;
-  color: black;
+.base:hover {
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.base.base_isDisabled:hover,
+.base.base_isDisabled {
+  background-color: rgba(0, 0, 0, .2);
+  color: white;
   cursor: not-allowed;
 }

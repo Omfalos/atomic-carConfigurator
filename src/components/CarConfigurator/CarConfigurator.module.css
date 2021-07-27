@@ -1,76 +1,95 @@
 .base {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  padding: .5rem 0;
-  transition: background-color .5s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: .5rem 0;
+    transition: background-color .5s;
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    opacity: 0;
+    width: 80%;
+    height: 100%;
+}
+
+.base_isLoaded .app {
+    opacity: 1;
 }
 
 .list {
-  padding: .5rem 1rem;
+    padding: .5rem 1rem;
+}
+
+.list > div {
+    margin-right: .5rem;
+    margin-bottom: .5rem;
 }
 
 .base:not(.base_isLoaded) {
-  background-color: black;
+    background-color: black;
 }
 
 .base_isLoaded {
-  background-color: white;
+    background-color: white;
 }
 
 .base_isLoaded .logo {
-  opacity: 0;
+    opacity: 0;
 }
 
 .logo {
-  position: absolute;
-  height: 15rem;
-  width: 15rem;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity .15s .2s;
+    position: absolute;
+    height: 15rem;
+    width: 15rem;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity .15s .2s;
 }
 
 .base_isLoaded .rightCol {
-  opacity: 1;
+    opacity: 1;
 }
 
 .rightCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 66.6666%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity .5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 66.6666%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .5s;
 }
 
 .base_isLoaded .leftCol {
-  opacity: 1;
+    opacity: 1;
 }
 
 .leftCol {
-  display: flex;
-  width: 33.3333%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity .15s; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 33.3333%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .15s;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
