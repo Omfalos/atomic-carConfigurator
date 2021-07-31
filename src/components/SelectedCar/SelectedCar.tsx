@@ -27,6 +27,25 @@ export const SelectedCar: FC = () => {
         <div className={styles.colorPreview} style={ color && color.color === '#ffffff' ? {backgroundColor:'#000'}: {}}>
             <FontAwesomeIcon icon={faCar} color={color?.color} size="8x"/>
         </div>
-        <div className={styles.sumUp}>Price: {price}</div>
+        <div className={styles.summary}>
+            <div className={styles.carPart}>
+                <span>Model:</span>
+                { !!model ? (<span>{model.displayName}</span>) : (<span className={styles.info}> Pick car model</span>)}
+            </div>
+            <div className={styles.carPart}>
+                <span>Engine:</span>
+                { !!engine ? (<span>{engine.displayName}</span>) : (<span className={styles.info}> Pick car engine</span>)}
+            </div>
+            <div className={styles.carPart}>
+                <span>Gear:</span>
+                { !!gear ? (<span>{gear.displayName}</span>) : (<span className={styles.info}> Pick gear type</span>)}
+            </div>
+            <div className={styles.carPart}>
+                <span>Color:</span>
+                { !!color ? (<span>{color.displayName}</span>) : (<span className={styles.info}> Pick color</span>)}
+            </div>
+            <div className={styles.carPart}><span>Price:</span><span className={styles.sumUp}>{price}</span></div>
+        </div>
+
     </div>
 }

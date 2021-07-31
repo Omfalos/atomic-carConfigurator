@@ -52,22 +52,26 @@ export const CarConfigurator: FC = () => {
             <img src={logo} className={styles.logo} alt="logo"/>
             <div className={styles.app}>
                 <div className={styles.rightCol}>
+                    <span className={styles.title}>Atomic car configurator</span>
+                    <span className={styles.label}>Car models:</span>
                     <div className={styles.list}>
                         <CarModelsList/>
                     </div>
-
+                    <span className={styles.label}>Engines:</span>
                     <div className={styles.list}>
                         <EngineList />
                     </div>
+                    <span className={styles.label}>Gear types:</span>
                     <div className={styles.list}>
                         <GearList />
                     </div>
+                    <span className={styles.label}>Colors:</span>
                     <div className={styles.list}>
                         <ColorList />
                     </div>
                 </div>
                 <div className={styles.leftCol}>
-                    <SelectedCar />
+                    {isLoaded && <SelectedCar />}
                 </div>
             </div>
         </div>
